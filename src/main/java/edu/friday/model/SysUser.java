@@ -1,14 +1,12 @@
 package edu.friday.model;
 
-import javax.persistence.*;
-
 import edu.friday.common.base.BaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
-import java.util.Objects;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="sys_user",schema = "friday")
@@ -68,7 +66,7 @@ public class SysUser extends BaseModel {
 
     @Basic
     @Column(name = "login_date")
-    private Timestamp loginDate;
+    private Date loginDate;
 
 
 

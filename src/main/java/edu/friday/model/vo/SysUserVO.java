@@ -26,9 +26,9 @@ public class SysUserVO implements Serializable {
     private String nickName;
     @Email(message = "邮箱格式不正确")
     @Size(min = 0,max=50,message = "邮箱长度不能超过50个字符")
-    private String mail;
+    private String email;
     @Size(min = 0,max=11,message = "手机号码长度不能超过11个字符")
-    private String phoneNumber;
+    private String phonenumber;
     private String sex;
     private String userType;
     private String avatar;
@@ -37,7 +37,8 @@ public class SysUserVO implements Serializable {
     private String salt;
     private String status; // 0: used / 1: not used
     private String delFlag;// 0: exit / 1: not exit
-    private String loginIP;
+    private String loginIp;
+
     private Date loginDate;
     private String createBy;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
