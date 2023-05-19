@@ -1,10 +1,9 @@
 package edu.friday.service;
 
-import edu.friday.model.SysUser;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
+import edu.friday.common.result.TableDataInfo;
+import edu.friday.model.vo.SysUserVO;
+import org.springframework.data.domain.Pageable;
 
 public interface SysUserService {
-    public List<SysUser> selectUserList();
+    TableDataInfo selectUserList(SysUserVO user, Pageable page);
 }
