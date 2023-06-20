@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SysUserServiceImpl implements SysUserService {
@@ -107,5 +108,35 @@ public class SysUserServiceImpl implements SysUserService {
         return list.get(0);
     }
 
+    public int deleteUserByIds(long[] userIds) {
+        return sysUserRepository.deleteUserByIds(userIds);
+    }
 
+    @Override
+    public boolean updateUser(SysUserVO user) {
+        Long userId = user.getUserId();
+        if (userId == null) {
+            return false;
+        }
+        Optional<SysUser> op = sysUserRepository.findById(userId);
+
+        if (!op.isPresent()) {
+            return false;
+        }
+        sysUserRepository.deleteUserRoleByUserId(userId);
+        SysUser sysUser = op.get();
+        BeanUtils.copyPropertiesIgnoreNull(user, sysUser);
+        sysUserRepository.save(sysUser);
+        insertUserRole(user);
+        return null != sysUser.getUserId();
+
+    }
+
+    @Override
+    public SysUser selectUserById(Long userId) {
+        SysUser sysUser = new SysUser();
+        sysUser.setUserId(userId);
+        sysUser.setDelFlag("0");
+        return sysUserRepository.findOne(Example.of(sysUser)).get();
+    }
 }
