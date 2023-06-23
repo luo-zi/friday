@@ -24,4 +24,6 @@ public interface SysUserService {
     int deleteUserByIds(long[] userIds);
 
     SysUser selectUserById(Long userId);
+
+    SysUser selectUserByUserName(String username);
 }

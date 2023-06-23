@@ -139,4 +139,13 @@ public class SysUserServiceImpl implements SysUserService {
         sysUser.setDelFlag("0");
         return sysUserRepository.findOne(Example.of(sysUser)).get();
     }
+
+    @Override
+    public SysUser selectUserByUserName(String username) {
+        SysUser sysUser = new SysUser();
+        sysUser.setUserName(username);
+        sysUser.setDelFlag("0");
+        Example<SysUser> example = Example.of(sysUser);
+        return findOne(example);
+    }
 }

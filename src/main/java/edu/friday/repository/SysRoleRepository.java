@@ -16,5 +16,5 @@ public interface SysRoleRepository extends JpaRepository<SysRole, Long> {
 
     @Query(value = "select r.role_id from sys_role r" + JOIN_ROLE + JOIN_USER
             + "where r.del_flag='0' and u.user_id=:userId", nativeQuery = true)
-    List<Long> selectRoleIdsByUserId(@Param("userId") Long userId);
+    List<SysRole> selectRoleIdsByUserId(@Param("userId") Long userId);
 }
